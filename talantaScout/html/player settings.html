@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Settings - TalantaScout</title>
+    <link rel="stylesheet" href="../css/player dashboard.css">
+    <link rel="stylesheet" href="../css/player setting.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="morph-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading Settings...</p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="nav-logo">
+                <i class="fas fa-futbol"></i>
+                <span>TalantaScout</span>
+            </div>
+        </div>
+        
+        <div class="module-heading">
+            <h1>Player Dashboard</h1>
+            <span class="package-badge basic">Basic Package</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li>
+                    <a href="player-dashboard.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="player-performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="player-matches.html" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Matches</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="player-videos.html" class="nav-item">
+                        <i class="fas fa-video"></i>
+                        <span>Videos</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="player-settings.html" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="logout-section">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h2>Player Settings</h2>
+                <p class="header-subtitle">Manage your profile, preferences, and account settings</p>
+            </div>
+            <div class="header-actions">
+                <div class="date-filter">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="dateFilter">
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="profile-container">
+                    <button class="profile-btn" id="profileBtn">
+                        <img src="https://via.placeholder.com/32" alt="Profile" class="profile-img">
+                        <span class="profile-name">John Doe</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="player profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="player settings.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="logoutDropdownBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Upgrade Notice -->
+        <div class="upgrade-notice">
+            <div class="upgrade-content">
+                <div class="upgrade-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="upgrade-text">
+                    <h3>Upgrade to Premium</h3>
+                    <p>Unlock advanced settings, detailed analytics, and priority support</p>
+                </div>
+                <button class="btn btn-primary upgrade-btn" id="upgradeBtn">Upgrade Now</button>
+            </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-container">
+            <!-- Settings Navigation -->
+            <div class="settings-nav">
+                <div class="settings-nav-item active" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="settings-nav-item" data-tab="preferences">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Preferences</span>
+                </div>
+                <div class="settings-nav-item" data-tab="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="settings-nav-item" data-tab="privacy">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Privacy & Security</span>
+                </div>
+                <div class="settings-nav-item" data-tab="account">
+                    <i class="fas fa-cog"></i>
+                    <span>Account</span>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="settings-content">
+                <!-- Profile Tab -->
+                <div class="settings-tab active" id="profile-tab">
+                    <div class="settings-section">
+                        <h3>Personal Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="John Doe">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth</label>
+                                    <input type="date" id="dateOfBirth" value="2000-05-15">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nationality">Nationality</label>
+                                    <select id="nationality">
+                                        <option value="kenya">Kenya</option>
+                                        <option value="uganda">Uganda</option>
+                                        <option value="tanzania">Tanzania</option>
+                                        <option value="rwanda">Rwanda</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="4">Talented midfielder with excellent vision and passing ability. Currently playing for Nairobi United FC.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Football Profile</h3>
+                        <div class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="position">Primary Position</label>
+                                    <select id="position">
+                                        <option value="gk">Goalkeeper</option>
+                                        <option value="def">Defender</option>
+                                        <option value="mid" selected>Midfielder</option>
+                                        <option value="fw">Forward</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="secondaryPosition">Secondary Position</label>
+                                    <select id="secondaryPosition">
+                                        <option value="none">None</option>
+                                        <option value="gk">Goalkeeper</option>
+                                        <option value="def">Defender</option>
+                                        <option value="mid">Midfielder</option>
+                                        <option value="fw" selected>Forward</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="preferredFoot">Preferred Foot</label>
+                                    <select id="preferredFoot">
+                                        <option value="right" selected>Right</option>
+                                        <option value="left">Left</option>
+                                        <option value="both">Both</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="height">Height (cm)</label>
+                                    <input type="number" id="height" value="178">
+                                </div>
+                                <div class="form-group">
+                                    <label for="weight">Weight (kg)</label>
+                                    <input type="number" id="weight" value="75">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Profile Photo</h3>
+                        <div class="profile-photo-upload">
+                            <div class="photo-preview">
+                                <img src="https://via.placeholder.com/150" alt="Profile Photo" id="profilePhoto">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Change Photo</span>
+                                </div>
+                            </div>
+                            <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                            <div class="photo-actions">
+                                <button class="btn btn-secondary" id="uploadPhotoBtn">Upload New Photo</button>
+                                <button class="btn btn-primary" id="removePhotoBtn">Remove Photo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+                        <button class="btn btn-secondary" id="cancelProfileBtn">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Preferences Tab -->
+                <div class="settings-tab" id="preferences-tab">
+                    <div class="settings-section">
+                        <h3>Display Preferences</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="darkMode" checked>
+                                <label for="darkMode">Enable Dark Mode</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="compactView">
+                                <label for="compactView">Use Compact View</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="language">Language</label>
+                                <select id="language">
+                                    <option value="en" selected>English</option>
+                                    <option value="sw">Swahili</option>
+                                    <option value="fr">French</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Performance Metrics</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showAdvancedMetrics" checked>
+                                <label for="showAdvancedMetrics">Show Advanced Performance Metrics</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="compareToPeers">
+                                <label for="compareToPeers">Compare My Performance to Peers</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="defaultStatView">Default Statistics View</label>
+                                <select id="defaultStatView">
+                                    <option value="last5" selected>Last 5 Matches</option>
+                                    <option value="last10">Last 10 Matches</option>
+                                    <option value="season">Current Season</option>
+                                    <option value="career">Career</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="savePreferencesBtn">Save Preferences</button>
+                        <button class="btn btn-secondary" id="resetPreferencesBtn">Reset to Defaults</button>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div class="settings-tab" id="notifications-tab">
+                    <div class="settings-section">
+                        <h3>Notification Preferences</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <label for="emailNotifications">Email Notifications</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="pushNotifications" checked>
+                                <label for="pushNotifications">Push Notifications</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="smsNotifications">
+                                <label for="smsNotifications">SMS Notifications</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Types</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="scoutInterest" checked>
+                                <label for="scoutInterest">Scout Interest</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="matchInvitations" checked>
+                                <label for="matchInvitations">Match Invitations</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="performanceUpdates" checked>
+                                <label for="performanceUpdates">Performance Updates</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="systemUpdates">
+                                <label for="systemUpdates">System Updates</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="promotionalOffers">
+                                <label for="promotionalOffers">Promotional Offers</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Frequency</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="notificationFrequency">How often would you like to receive updates?</label>
+                                <select id="notificationFrequency">
+                                    <option value="immediately">Immediately</option>
+                                    <option value="daily" selected>Daily Digest</option>
+                                    <option value="weekly">Weekly Summary</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveNotificationsBtn">Save Notification Settings</button>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security Tab -->
+                <div class="settings-tab" id="privacy-tab">
+                    <div class="settings-section">
+                        <h3>Privacy Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="profileVisibility">Profile Visibility</label>
+                                <select id="profileVisibility">
+                                    <option value="public">Public</option>
+                                    <option value="scouts" selected>Scouts Only</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showContactInfo" checked>
+                                <label for="showContactInfo">Show Contact Information to Verified Scouts</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showPerformanceData" checked>
+                                <label for="showPerformanceData">Show Performance Data to Scouts</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showVideoHighlights" checked>
+                                <label for="showVideoHighlights">Show Video Highlights to Scouts</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Security Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="passwordStrength"></div>
+                                </div>
+                                <span class="strength-text" id="passwordStrengthText">Password Strength</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Two-Factor Authentication</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="twoFactorAuth">
+                                <label for="twoFactorAuth">Enable Two-Factor Authentication</label>
+                            </div>
+                            <p class="form-description">Add an extra layer of security to your account by requiring a verification code in addition to your password.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="savePrivacyBtn">Save Privacy & Security Settings</button>
+                    </div>
+                </div>
+
+                <!-- Account Tab -->
+                <div class="settings-tab" id="account-tab">
+                    <div class="settings-section">
+                        <h3>Account Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john.doe@example.com">
+                                <button class="btn btn-secondary verify-btn" id="verifyEmailBtn">Verify Email</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+254 712 345 678">
+                                <button class="btn btn-secondary verify-btn" id="verifyPhoneBtn">Verify Phone</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Subscription</h3>
+                        <div class="subscription-info">
+                            <div class="subscription-details">
+                                <div class="subscription-plan">
+                                    <h4>Basic Plan</h4>
+                                    <p>Limited access to features and analytics</p>
+                                </div>
+                                <div class="subscription-status">
+                                    <span class="status-badge scheduled">Active</span>
+                                    <p>Renews on: 15th October 2023</p>
+                                </div>
+                            </div>
+                            <div class="subscription-actions">
+                                <button class="btn btn-primary" id="upgradePlanBtn">Upgrade Plan</button>
+                                <button class="btn btn-secondary" id="cancelSubscriptionBtn">Cancel Subscription</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section danger-zone">
+                        <h3>Danger Zone</h3>
+                        <div class="danger-actions">
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2023 TalantaScout. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle toast-icon"></i>
+            <span class="toast-message" id="toastMessage">Settings saved successfully!</span>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Upgrade Modal -->
+    <div class="modal-overlay" id="upgradeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Upgrade Your Plan</h3>
+                <button class="close-modal" id="closeUpgradeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Choose the plan that's right for you and unlock advanced features.</p>
+                <div class="upgrade-options">
+                    <div class="upgrade-option">
+                        <div class="package-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Basic</h4>
+                        <div class="price">Free</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Basic Performance Tracking</li>
+                            <li><i class="fas fa-check"></i> Limited Match History</li>
+                            <li><i class="fas fa-check"></i> Basic Profile</li>
+                            <li><i class="fas fa-times"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-times"></i> Video Highlights</li>
+                        </ul>
+                        <button class="btn btn-secondary">Current Plan</button>
+                    </div>
+                    <div class="upgrade-option featured">
+                        <div class="package-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4>Premium</h4>
+                        <div class="price">$9.99/month</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Advanced Performance Tracking</li>
+                            <li><i class="fas fa-check"></i> Unlimited Match History</li>
+                            <li><i class="fas fa-check"></i> Enhanced Profile</li>
+                            <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-check"></i> Video Highlights</li>
+                        </ul>
+                        <button class="btn btn-primary">Upgrade Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div class="modal-overlay" id="deleteAccountModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Delete Your Account</h3>
+                <button class="close-modal" id="closeDeleteModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost.</p>
+                <div class="delete-confirmation">
+                    <div class="form-group">
+                        <label for="deleteConfirmation">Type "DELETE" to confirm</label>
+                        <input type="text" id="deleteConfirmation" placeholder="DELETE">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-danger" id="confirmDeleteBtn" disabled>Delete Account</button>
+                    <button class="btn btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/player setting.js"></script>
+</body>
+</html>

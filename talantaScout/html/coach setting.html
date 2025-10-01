@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Settings - TalantaScout</title>
+    <link rel="stylesheet" href="../css/player dashboard.css">
+    <link rel="stylesheet" href="../css/coach settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="morph-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading Settings...</p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <div class="nav-logo">
+                <i class="fas fa-futbol"></i>
+                <span>TalantaScout</span>
+            </div>
+        </div>
+        
+        <div class="module-heading">
+            <h1>Coach Dashboard</h1>
+            <span class="package-badge professional">Professional Package</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li>
+                    <a href="coach-dashboard.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-players.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Players</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-team.html" class="nav-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-training.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Training</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-matches.html" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Matches</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-analytics.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="coach-settings.html" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="logout-section">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h2>Coach Settings</h2>
+                <p class="header-subtitle">Manage your profile, team settings, and coaching preferences</p>
+            </div>
+            <div class="header-actions">
+                <div class="date-filter">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="dateFilter">
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="profile-container">
+                    <button class="profile-btn" id="profileBtn">
+                        <img src="https://via.placeholder.com/32" alt="Profile" class="profile-img">
+                        <span class="profile-name">Coach Smith</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="coach-profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            <span>My Profile</span>
+                        </a>
+                        <a href="coach-settings.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" id="logoutDropdownBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Upgrade Notice -->
+        <div class="upgrade-notice">
+            <div class="upgrade-content">
+                <div class="upgrade-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="upgrade-text">
+                    <h3>Upgrade to Elite</h3>
+                    <p>Unlock advanced team analytics, unlimited player profiles, and priority support</p>
+                </div>
+                <button class="btn btn-primary upgrade-btn" id="upgradeBtn">Upgrade Now</button>
+            </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="settings-container">
+            <!-- Settings Navigation -->
+            <div class="settings-nav">
+                <div class="settings-nav-item active" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="settings-nav-item" data-tab="team">
+                    <i class="fas fa-users"></i>
+                    <span>Team Settings</span>
+                </div>
+                <div class="settings-nav-item" data-tab="training">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Training</span>
+                </div>
+                <div class="settings-nav-item" data-tab="scouting">
+                    <i class="fas fa-binoculars"></i>
+                    <span>Scouting</span>
+                </div>
+                <div class="settings-nav-item" data-tab="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="settings-nav-item" data-tab="privacy">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Privacy & Security</span>
+                </div>
+                <div class="settings-nav-item" data-tab="account">
+                    <i class="fas fa-cog"></i>
+                    <span>Account</span>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="settings-content">
+                <!-- Profile Tab -->
+                <div class="settings-tab active" id="profile-tab">
+                    <div class="settings-section">
+                        <h3>Personal Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="Coach Smith">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dateOfBirth">Date of Birth</label>
+                                    <input type="date" id="dateOfBirth" value="1980-05-15">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nationality">Nationality</label>
+                                    <select id="nationality">
+                                        <option value="kenya">Kenya</option>
+                                        <option value="uganda">Uganda</option>
+                                        <option value="tanzania">Tanzania</option>
+                                        <option value="rwanda">Rwanda</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coachingLicense">Coaching License</label>
+                                <select id="coachingLicense">
+                                    <option value="none">None</option>
+                                    <option value="c">C License</option>
+                                    <option value="b">B License</option>
+                                    <option value="a" selected>A License</option>
+                                    <option value="pro">Pro License</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialization">Specialization</label>
+                                <select id="specialization">
+                                    <option value="youth">Youth Development</option>
+                                    <option value="fitness">Fitness Coach</option>
+                                    <option value="gk">Goalkeeping Coach</option>
+                                    <option value="tactical" selected>Tactical Coach</option>
+                                    <option value="head">Head Coach</option>
+                                    <option value="assistant">Assistant Coach</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="coachingExperience">Years of Coaching Experience</label>
+                                <input type="number" id="coachingExperience" value="12" min="0" max="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea id="bio" rows="4">Experienced football coach with 12 years in youth development and professional teams. Specialized in tactical analysis and player development.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Current Team</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="currentTeam">Team Name</label>
+                                <input type="text" id="currentTeam" value="Nairobi United FC">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="teamLevel">Team Level</label>
+                                    <select id="teamLevel">
+                                        <option value="youth">Youth</option>
+                                        <option value="amateur">Amateur</option>
+                                        <option value="semi-pro">Semi-Professional</option>
+                                        <option value="professional" selected>Professional</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="teamAgeGroup">Age Group</label>
+                                    <select id="teamAgeGroup">
+                                        <option value="u12">U12</option>
+                                        <option value="u14">U14</option>
+                                        <option value="u16">U16</option>
+                                        <option value="u18">U18</option>
+                                        <option value="u21">U21</option>
+                                        <option value="senior" selected>Senior</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Profile Photo</h3>
+                        <div class="profile-photo-upload">
+                            <div class="photo-preview">
+                                <img src="https://via.placeholder.com/150" alt="Profile Photo" id="profilePhoto">
+                                <div class="photo-overlay">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Change Photo</span>
+                                </div>
+                            </div>
+                            <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                            <div class="photo-actions">
+                                <button class="btn btn-secondary" id="uploadPhotoBtn">Upload New Photo</button>
+                                <button class="btn btn-primary" id="removePhotoBtn">Remove Photo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+                        <button class="btn btn-secondary" id="cancelProfileBtn">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Team Settings Tab -->
+                <div class="settings-tab" id="team-tab">
+                    <div class="settings-section">
+                        <h3>Team Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="teamName">Team Name</label>
+                                <input type="text" id="teamName" value="Nairobi United FC">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="teamFounded">Year Founded</label>
+                                    <input type="number" id="teamFounded" value="2010" min="1800" max="2023">
+                                </div>
+                                <div class="form-group">
+                                    <label for="teamColors">Team Colors</label>
+                                    <div class="color-picker">
+                                        <input type="color" id="primaryColor" value="#1B5E20">
+                                        <label for="primaryColor">Primary</label>
+                                        <input type="color" id="secondaryColor" value="#FFC107">
+                                        <label for="secondaryColor">Secondary</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="teamLogo">Team Logo</label>
+                                <div class="logo-upload">
+                                    <div class="logo-preview">
+                                        <img src="https://via.placeholder.com/100" alt="Team Logo" id="teamLogoPreview">
+                                        <div class="logo-overlay">
+                                            <i class="fas fa-upload"></i>
+                                            <span>Upload Logo</span>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="logoUpload" accept="image/*" style="display: none;">
+                                    <div class="logo-actions">
+                                        <button class="btn btn-secondary" id="uploadLogoBtn">Upload New Logo</button>
+                                        <button class="btn btn-primary" id="removeLogoBtn">Remove Logo</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Team Preferences</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="defaultFormation">Default Formation</label>
+                                <select id="defaultFormation">
+                                    <option value="4-4-2">4-4-2</option>
+                                    <option value="4-3-3" selected>4-3-3</option>
+                                    <option value="4-2-3-1">4-2-3-1</option>
+                                    <option value="3-5-2">3-5-2</option>
+                                    <option value="3-4-3">3-4-3</option>
+                                    <option value="5-3-2">5-3-2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="playingStyle">Preferred Playing Style</label>
+                                <select id="playingStyle">
+                                    <option value="possession">Possession-based</option>
+                                    <option value="counter">Counter-attacking</option>
+                                    <option value="pressing" selected>High Pressing</option>
+                                    <option value="direct">Direct Play</option>
+                                    <option value="mixed">Mixed Approach</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="autoPlayerRotation" checked>
+                                <label for="autoPlayerRotation">Enable Automatic Player Rotation Suggestions</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="injuryAlerts" checked>
+                                <label for="injuryAlerts">Send Injury Alert Notifications</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Team Staff</h3>
+                        <div class="staff-management">
+                            <div class="staff-header">
+                                <h4>Current Staff Members</h4>
+                                <button class="btn btn-primary" id="addStaffBtn">Add Staff Member</button>
+                            </div>
+                            <div class="staff-list">
+                                <div class="staff-item">
+                                    <div class="staff-info">
+                                        <div class="staff-name">Assistant Coach</div>
+                                        <div class="staff-email">james.m@nairobiunited.com</div>
+                                    </div>
+                                    <div class="staff-actions">
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="staff-item">
+                                    <div class="staff-info">
+                                        <div class="staff-name">Fitness Coach</div>
+                                        <div class="staff-email">maria.k@nairobiunited.com</div>
+                                    </div>
+                                    <div class="staff-actions">
+                                        <button class="btn-icon" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveTeamBtn">Save Team Settings</button>
+                        <button class="btn btn-secondary" id="resetTeamBtn">Reset to Defaults</button>
+                    </div>
+                </div>
+
+                <!-- Training Tab -->
+                <div class="settings-tab" id="training-tab">
+                    <div class="settings-section">
+                        <h3>Training Schedule</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="trainingFrequency">Training Sessions Per Week</label>
+                                <select id="trainingFrequency">
+                                    <option value="2">2 sessions</option>
+                                    <option value="3" selected>3 sessions</option>
+                                    <option value="4">4 sessions</option>
+                                    <option value="5">5 sessions</option>
+                                    <option value="6">6 sessions</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sessionDuration">Average Session Duration (minutes)</label>
+                                <input type="number" id="sessionDuration" value="90" min="30" max="180">
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="weekendTraining" checked>
+                                <label for="weekendTraining">Include Weekend Training Sessions</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Training Focus Areas</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="focusTechnical" checked>
+                                <label for="focusTechnical">Technical Skills</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="focusTactical" checked>
+                                <label for="focusTactical">Tactical Understanding</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="focusPhysical" checked>
+                                <label for="focusPhysical">Physical Conditioning</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="focusMental">
+                                <label for="focusMental">Mental Preparation</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="focusSetPieces" checked>
+                                <label for="focusSetPieces">Set Pieces</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Training Intensity</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="intensityPreseason">Preseason Intensity</label>
+                                <select id="intensityPreseason">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high" selected>High</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="intensityInSeason">In-Season Intensity</label>
+                                <select id="intensityInSeason">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="recoveryDays">Recovery Days After Matches</label>
+                                <select id="recoveryDays">
+                                    <option value="1">1 day</option>
+                                    <option value="2" selected>2 days</option>
+                                    <option value="3">3 days</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveTrainingBtn">Save Training Settings</button>
+                        <button class="btn btn-secondary" id="resetTrainingBtn">Reset to Defaults</button>
+                    </div>
+                </div>
+
+                <!-- Scouting Tab -->
+                <div class="settings-tab" id="scouting-tab">
+                    <div class="settings-section">
+                        <h3>Player Search Preferences</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="preferredAgeRange">Preferred Age Range</label>
+                                <div class="range-inputs">
+                                    <input type="number" id="minAge" value="16" min="16" max="40">
+                                    <span>to</span>
+                                    <input type="number" id="maxAge" value="25" min="16" max="40">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="scoutingRadius">Scouting Radius (km)</label>
+                                <select id="scoutingRadius">
+                                    <option value="50">50 km</option>
+                                    <option value="100" selected>100 km</option>
+                                    <option value="250">250 km</option>
+                                    <option value="500">500 km</option>
+                                    <option value="national">National</option>
+                                    <option value="international">International</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="videoHighlightsOnly" checked>
+                                <label for="videoHighlightsOnly">Only Show Players With Video Highlights</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="verifiedStatsOnly">
+                                <label for="verifiedStatsOnly">Only Show Players With Verified Stats</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Player Evaluation Criteria</h3>
+                        <div class="settings-form">
+                            <div class="criteria-weight">
+                                <div class="criteria-item">
+                                    <label for="weightTechnical">Technical Skills</label>
+                                    <input type="range" id="weightTechnical" min="0" max="100" value="30">
+                                    <span class="weight-value">30%</span>
+                                </div>
+                                <div class="criteria-item">
+                                    <label for="weightTactical">Tactical Understanding</label>
+                                    <input type="range" id="weightTactical" min="0" max="100" value="25">
+                                    <span class="weight-value">25%</span>
+                                </div>
+                                <div class="criteria-item">
+                                    <label for="weightPhysical">Physical Attributes</label>
+                                    <input type="range" id="weightPhysical" min="0" max="100" value="20">
+                                    <span class="weight-value">20%</span>
+                                </div>
+                                <div class="criteria-item">
+                                    <label for="weightMental">Mental Attributes</label>
+                                    <input type="range" id="weightMental" min="0" max="100" value="15">
+                                    <span class="weight-value">15%</span>
+                                </div>
+                                <div class="criteria-item">
+                                    <label for="weightPotential">Potential</label>
+                                    <input type="range" id="weightPotential" min="0" max="100" value="10">
+                                    <span class="weight-value">10%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Automated Scouting Reports</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="autoWeeklyReports" checked>
+                                <label for="autoWeeklyReports">Send Weekly Scouting Reports</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="playerAlerts">
+                                <label for="playerAlerts">Send Alerts for High-Potential Players</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="reportFormat">Report Format</label>
+                                <select id="reportFormat">
+                                    <option value="summary" selected>Summary</option>
+                                    <option value="detailed">Detailed</option>
+                                    <option value="comprehensive">Comprehensive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveScoutingBtn">Save Scouting Settings</button>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div class="settings-tab" id="notifications-tab">
+                    <div class="settings-section">
+                        <h3>Notification Preferences</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <label for="emailNotifications">Email Notifications</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="pushNotifications" checked>
+                                <label for="pushNotifications">Push Notifications</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="smsNotifications">
+                                <label for="smsNotifications">SMS Notifications</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Types</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="playerUpdates" checked>
+                                <label for="playerUpdates">Player Performance Updates</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="matchReminders" checked>
+                                <label for="matchReminders">Match Reminders</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="trainingAttendance" checked>
+                                <label for="trainingAttendance">Training Attendance Reports</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="injuryReports" checked>
+                                <label for="injuryReports">Injury Reports</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="scoutingReports" checked>
+                                <label for="scoutingReports">Scouting Reports</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="systemUpdates">
+                                <label for="systemUpdates">System Updates</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="promotionalOffers">
+                                <label for="promotionalOffers">Promotional Offers</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notification Frequency</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="notificationFrequency">How often would you like to receive updates?</label>
+                                <select id="notificationFrequency">
+                                    <option value="immediately">Immediately</option>
+                                    <option value="daily" selected>Daily Digest</option>
+                                    <option value="weekly">Weekly Summary</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="saveNotificationsBtn">Save Notification Settings</button>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security Tab -->
+                <div class="settings-tab" id="privacy-tab">
+                    <div class="settings-section">
+                        <h3>Privacy Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="profileVisibility">Profile Visibility</label>
+                                <select id="profileVisibility">
+                                    <option value="public">Public</option>
+                                    <option value="players" selected>Players Only</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showContactInfo" checked>
+                                <label for="showContactInfo">Show Contact Information to Verified Players</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showTeamInfo" checked>
+                                <label for="showTeamInfo">Show Team Information</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="showCoachingHistory">
+                                <label for="showCoachingHistory">Show Coaching History</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Team Data Access</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="playerDataAccess">Player Data Access Level</label>
+                                <select id="playerDataAccess">
+                                    <option value="limited">Limited (Basic Info Only)</option>
+                                    <option value="standard" selected>Standard (Performance Data)</option>
+                                    <option value="full">Full (All Data Including Medical)</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="allowPlayerExport" checked>
+                                <label for="allowPlayerExport">Allow Players to Export Their Data</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Security Settings</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="passwordStrength"></div>
+                                </div>
+                                <span class="strength-text" id="passwordStrengthText">Password Strength</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Two-Factor Authentication</h3>
+                        <div class="settings-form">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="twoFactorAuth">
+                                <label for="twoFactorAuth">Enable Two-Factor Authentication</label>
+                            </div>
+                            <p class="form-description">Add an extra layer of security to your account by requiring a verification code in addition to your password.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" id="savePrivacyBtn">Save Privacy & Security Settings</button>
+                    </div>
+                </div>
+
+                <!-- Account Tab -->
+                <div class="settings-tab" id="account-tab">
+                    <div class="settings-section">
+                        <h3>Account Information</h3>
+                        <div class="settings-form">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="coach.smith@nairobiunited.com">
+                                <button class="btn btn-secondary verify-btn" id="verifyEmailBtn">Verify Email</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+254 712 345 678">
+                                <button class="btn btn-secondary verify-btn" id="verifyPhoneBtn">Verify Phone</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Subscription</h3>
+                        <div class="subscription-info">
+                            <div class="subscription-details">
+                                <div class="subscription-plan">
+                                    <h4>Professional Plan</h4>
+                                    <p>Full access to coaching tools and team management features</p>
+                                </div>
+                                <div class="subscription-status">
+                                    <span class="status-badge scheduled">Active</span>
+                                    <p>Renews on: 15th October 2023</p>
+                                </div>
+                            </div>
+                            <div class="subscription-actions">
+                                <button class="btn btn-primary" id="upgradePlanBtn">Upgrade to Elite</button>
+                                <button class="btn btn-secondary" id="cancelSubscriptionBtn">Cancel Subscription</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Data Management</h3>
+                        <div class="data-actions">
+                            <div class="data-action-item">
+                                <div class="data-info">
+                                    <h4>Export Your Data</h4>
+                                    <p>Download a copy of your coaching data, player information, and team statistics.</p>
+                                </div>
+                                <button class="btn btn-secondary" id="exportDataBtn">Export Data</button>
+                            </div>
+                            <div class="data-action-item">
+                                <div class="data-info">
+                                    <h4>Clear Training Data</h4>
+                                    <p>Remove all training session data while keeping player profiles and match records.</p>
+                                </div>
+                                <button class="btn btn-secondary" id="clearTrainingBtn">Clear Training Data</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section danger-zone">
+                        <h3>Danger Zone</h3>
+                        <div class="danger-actions">
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                            <button class="btn btn-danger" id="deleteAccountBtn">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p class="footer-text">&copy; 2023 TalantaScout. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle toast-icon"></i>
+            <span class="toast-message" id="toastMessage">Settings saved successfully!</span>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Upgrade Modal -->
+    <div class="modal-overlay" id="upgradeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Upgrade to Elite</h3>
+                <button class="modal-close" id="upgradeModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upgrade-features">
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="feature-text">
+                            <h4>Advanced Analytics</h4>
+                            <p>Deep insights into team performance and player development</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <div class="feature-text">
+                            <h4>Unlimited Player Profiles</h4>
+                            <p>Add as many players as you need to your team</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="feature-text">
+                            <h4>Priority Support</h4>
+                            <p>Get help faster with our dedicated support team</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade-pricing">
+                    <div class="pricing-option">
+                        <h4>Monthly</h4>
+                        <div class="price">$29.99<span>/month</span></div>
+                        <button class="btn btn-primary">Upgrade Monthly</button>
+                    </div>
+                    <div class="pricing-option recommended">
+                        <div class="recommended-badge">Best Value</div>
+                        <h4>Annual</h4>
+                        <div class="price">$299.99<span>/year</span></div>
+                        <p class="savings">Save $60 compared to monthly</p>
+                        <button class="btn btn-primary">Upgrade Annually</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../css/player dashboard.css"></script>
+    <script src="../js/coach settings.js"></script>
+</body>
+</html>

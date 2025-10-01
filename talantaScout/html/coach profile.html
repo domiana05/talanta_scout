@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalantaScout - Coach Profile (Enhanced)</title>
+    <link rel="stylesheet" href="../css/coach profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="morph-overlay" id="morphOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading Coach Profile...</p>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="nav-logo">
+                <i class="fas fa-futbol"></i>
+                <span>TalantaScout</span>
+            </div>
+        </div>
+
+        <div class="module-heading">
+            <h1>COACH PROFILE</h1>
+            <div class="package-badge enhanced">ENHANCED VIEW</div>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li>
+                    <a href="coach dashboard.html" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="coach profile.html" class="nav-item">
+                        <i class="fas fa-user"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="training-plans.html" class="nav-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Training Plans</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="team-management.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Team Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="match-analysis.html" class="nav-item">
+                        <i class="fas fa-futbol"></i>
+                        <span>Match Analysis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="talent-scouting.html" class="nav-item">
+                        <i class="fas fa-search"></i>
+                        <span>Talent Scouting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-achievements.html" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Achievements</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="coach-settings.html" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="logout-section">
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="dashboard-header">
+            <h2>My Profile - Enhanced View</h2>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon theme-icon"></i>
+                </button>
+                <div class="profile-container">
+                    <button class="profile-btn" id="profileBtn" aria-label="User profile" aria-expanded="false">
+                        <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
+                        <span>Coach Kamau</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="coach profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <button id="logoutDropdown" class="dropdown-item logout-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-banner">
+                <img src="https://via.placeholder.com/1200x300" alt="Banner" class="banner-image">
+                <div class="profile-avatar-container">
+                    <img src="https://via.placeholder.com/150" alt="Coach Profile" class="profile-avatar">
+                    <button class="change-photo-btn" id="changePhotoBtn" aria-label="Change profile photo">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1>Coach John Kamau</h1>
+                <div class="position">Head Coach - Youth Development</div>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Nairobi, Kenya</span>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Teams Coached</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Players Developed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">4.8</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- Personal Information Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+                    <button class="edit-btn" id="editPersonalBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <span>John Kamau</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Date of Birth</label>
+                        <span>May 15, 1978</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Nationality</label>
+                        <span>Kenyan</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Languages</label>
+                        <span>English, Swahili</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <span>john.kamau@talantascout.com</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <span>+254 712 345 678</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Address</label>
+                        <span>Westlands, Nairobi, Kenya</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Coaching Since</label>
+                        <span>2008</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coaching Information Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-clipboard-list"></i> Coaching Information</h3>
+                    <button class="edit-btn" id="editCoachingBtn">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Current Team</label>
+                        <span>Gor Mahia FC Youth Academy</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Position</label>
+                        <span>Head Coach - Youth Development</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Coaching License</label>
+                        <span>CAF A License</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Specialization</label>
+                        <span>Youth Development, Tactical Analysis</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Years Coaching</label>
+                        <span>15 years</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Previous Teams</label>
+                        <span>Mathare United, AFC Leopards Youth</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Coaching Philosophy</label>
+                        <span>Possession-based, High Press</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Contract Until</label>
+                        <span>December 2025</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coaching Stats Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-line"></i> Coaching Statistics</h3>
+                    <span class="enhanced-badge">Enhanced Analytics</span>
+                </div>
+                <div class="coaching-stats">
+                    <div class="coaching-stat">
+                        <div class="coaching-stat-value">68%</div>
+                        <div class="coaching-stat-label">Win Rate</div>
+                    </div>
+                    <div class="coaching-stat">
+                        <div class="coaching-stat-value">142</div>
+                        <div class="coaching-stat-label">Matches Coached</div>
+                    </div>
+                    <div class="coaching-stat">
+                        <div class="coaching-stat-value">45</div>
+                        <div class="coaching-stat-label">Players Developed</div>
+                    </div>
+                    <div class="coaching-stat">
+                        <div class="coaching-stat-value">8</div>
+                        <div class="coaching-stat-label">Trophies Won</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coaching Skills Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-bar"></i> Coaching Skills Assessment</h3>
+                    <span class="enhanced-badge">Enhanced View</span>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Tactical Knowledge</span>
+                            <span class="skill-rating">9.2</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Player Development</span>
+                            <span class="skill-rating">8.8</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Leadership</span>
+                            <span class="skill-rating">8.5</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Communication</span>
+                            <span class="skill-rating">8.7</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 87%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Game Analysis</span>
+                            <span class="skill-rating">9.0</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Youth Development</span>
+                            <span class="skill-rating">9.4</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Roster Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> Current Team Roster</h3>
+                    <div class="enhanced-feature">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Player</span>
+                    </div>
+                </div>
+                <div class="team-roster">
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">Brian Otieno</div>
+                        <div class="player-position">Midfielder</div>
+                    </div>
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">James Mwangi</div>
+                        <div class="player-position">Forward</div>
+                    </div>
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">David Ochieng</div>
+                        <div class="player-position">Defender</div>
+                    </div>
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">Michael Njoroge</div>
+                        <div class="player-position">Goalkeeper</div>
+                    </div>
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">Samuel Kariuki</div>
+                        <div class="player-position">Midfielder</div>
+                    </div>
+                    <div class="player-card">
+                        <img src="https://via.placeholder.com/60" alt="Player" class="player-avatar">
+                        <div class="player-name">Peter Maina</div>
+                        <div class="player-position">Forward</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Charts Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-pie"></i> Performance Analytics</h3>
+                    <span class="enhanced-badge">Enhanced Stats</span>
+                </div>
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h4>Team Performance Trend</h4>
+                        <canvas id="teamPerformanceChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Player Development Progress</h4>
+                        <canvas id="playerDevelopmentChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Tactical Effectiveness</h4>
+                        <canvas id="tacticalEffectivenessChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h4>Match Results Analysis</h4>
+                        <canvas id="matchResultsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Training Portfolio Section -->
+            <section class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-video"></i> Training Portfolio</h3>
+                    <div class="enhanced-feature">
+                        <i class="fas fa-plus"></i>
+                        <span>Upload New Session</span>
+                    </div>
+                </div>
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="https://via.placeholder.com/280x160" alt="Training Session">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-duration">15:30</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tactical Possession Drills</h4>
+                            <p>Advanced possession and pressing exercises</p>
+                            <div class="video-actions">
+                                <button class="video-action-btn">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="video-action-btn">
+                                    <i class="fas fa-share"></i> Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <img src="https://via.placeholder.com/280x160" alt="Match Analysis">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-duration">22:15</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Match Analysis vs AFC Leopards</h4>
+                            <p>Tactical breakdown and player performance</p>
+                            <div class="video-actions">
+                                <button class="video-action-btn">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="video-action-btn">
+                                    <i class="fas fa-share"></i> Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-item upload-video">
+                        <div class="upload-placeholder">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Upload New Training Session</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p class="footer-text">© 2025 TalantaScout. Empowering the next generation of Kenyan football talent.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Privacy</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../js/coach profile.js"></script>
+</body>
+</html>

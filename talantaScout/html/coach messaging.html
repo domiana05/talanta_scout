@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalantaScout - Coach Messaging Board</title>
+    <link rel="stylesheet" href="../css/coach messaging.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="messaging-container">
+        <!-- Conversations Sidebar -->
+        <div class="conversations-sidebar">
+            <div class="conversations-header">
+                <h3>Coach Conversations</h3>
+                <div class="conversation-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="player">Players</button>
+                    <button class="filter-btn" data-filter="scout">Scouts</button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search contacts..." id="searchContacts">
+                </div>
+            </div>
+            <div class="conversations-list" id="conversationsList">
+                <!-- Conversations will be loaded by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header" id="chatHeader">
+                <div class="chat-header-info">
+                    <div class="contact-avatar" id="contactAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4 id="currentContactName">Select a contact to start chatting</h4>
+                        <p id="currentContactType">Choose from the list on the left</p>
+                        <div class="contact-status" id="contactStatus">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Offline</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="btn-icon" id="infoBtn" title="Contact Information">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    <button class="btn-icon" id="callBtn" title="Voice Call">
+                        <i class="fas fa-phone"></i>
+                    </button>
+                    <button class="btn-icon" id="videoBtn" title="Video Call">
+                        <i class="fas fa-video"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="messages-container" id="messagesContainer">
+                <div class="no-conversation-selected" id="noConversation">
+                    <i class="fas fa-comments"></i>
+                    <h3>No Conversation Selected</h3>
+                    <p>Select a contact from the sidebar to start messaging</p>
+                </div>
+                <!-- Messages will be loaded by JavaScript -->
+            </div>
+
+            <div class="message-input-container" id="messageInputContainer">
+                <div class="message-input">
+                    <input type="text" placeholder="Type your message..." id="messageInput" disabled>
+                    <button class="btn-send" id="sendBtn" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="message-actions">
+                    <button class="btn-action" id="attachBtn" title="Attach File">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="btn-action" id="emojiBtn" title="Add Emoji">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button class="btn-action" id="scheduleBtn" title="Schedule Session">
+                        <i class="fas fa-calendar-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Info Modal -->
+    <div class="modal-overlay" id="contactInfoModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Contact Information</h3>
+                <button class="close-modal" id="closeContactInfoModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="contact-info" id="contactInfoContent">
+                    <!-- Contact info will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Session Modal -->
+    <div class="modal-overlay" id="scheduleSessionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Schedule Training Session</h3>
+                <button class="close-modal" id="closeScheduleModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="schedule-form">
+                    <div class="form-group">
+                        <label for="sessionTitle">Session Title</label>
+                        <input type="text" id="sessionTitle" placeholder="Enter session title">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionDate">Date</label>
+                        <input type="date" id="sessionDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionTime">Time</label>
+                        <input type="time" id="sessionTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionDuration">Duration (minutes)</label>
+                        <input type="number" id="sessionDuration" min="15" max="180" value="60">
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionType">Session Type</label>
+                        <select id="sessionType">
+                            <option value="technical">Technical Training</option>
+                            <option value="tactical">Tactical Session</option>
+                            <option value="physical">Physical Conditioning</option>
+                            <option value="video">Video Analysis</option>
+                            <option value="meeting">One-on-One Meeting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionNotes">Additional Notes</label>
+                        <textarea id="sessionNotes" placeholder="Any additional information..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" id="cancelSchedule">Cancel</button>
+                        <button class="btn btn-primary" id="confirmSchedule">Schedule Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Panel -->
+    <div class="quick-actions-panel">
+        <button class="quick-action" id="newGroupBtn" title="Create Group Chat">
+            <i class="fas fa-users"></i>
+        </button>
+        <button class="quick-action" id="broadcastBtn" title="Send Broadcast">
+            <i class="fas fa-bullhorn"></i>
+        </button>
+        <button class="quick-action" id="notesBtn" title="Coach Notes">
+            <i class="fas fa-clipboard"></i>
+        </button>
+    </div>
+
+    <script src="../js/coach messaging.js"></script>
+</body>
+</html>
